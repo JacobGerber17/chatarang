@@ -1,11 +1,10 @@
 import React from 'react'
+import Avatar from './Avatar';
 
 const Message = (props) => {
     return (
         <div className="Message" style={styles.message}>
-            <div
-                classList="Avatar"
-            ></div>
+            <Avatar />
             <div classList="details" style={styles.details}>
                 <div classList="Metadata">
                     <div classList="user">{props.message.userName}</div>
