@@ -22,6 +22,7 @@ class Chat extends Component {
             id: Date.now(),
             userName: this.props.user.userName,
             body: body,
+            email: this.props.user.email
         })
 
         this.setState({messages})
