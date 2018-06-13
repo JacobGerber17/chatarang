@@ -7,23 +7,32 @@ import Login from './Login';
 class App extends Component {
   state = {
     user: {
-      uid: '1',
-      userName: 'bob',
-      email: 'bob@gmail.com',
+      uid: '',
+      userName: '',
+      email: '',
     }
   }
 
+  signedIn = () => {
+    return this.state.user.uid
+  }
+
+  login = (user) => {
+    this.setState({ user })
+  }
+
+  signOut = () => {
+    this.setState({ user: {
+      uid: '',
+      userName: '',
+      email: '',
+    }})
+  }
+
   render() {
-    let isLoggedIn = false
-
-    if(this.state.user.userName != ''){
-      isLoggedIn = true
-    }
-
     return (
       <div className="App">
-        {isLoggedIn ? <Main user={this.state.user} /> : <Login />}
-        
+        {this.signedIn() ? <Main user={this.state.user} signOut={this.signOut}/> : <Login login={this.login} />}
       </div>
     );
   }

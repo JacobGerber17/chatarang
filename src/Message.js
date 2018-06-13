@@ -12,7 +12,6 @@ const Message = (props) => {
                     {props.message.body}
                 </div>
             </div>
-            :
         </div>
     )
 }

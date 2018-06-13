@@ -7,7 +7,7 @@ const UserInfo = (props) => {
         <div className="UserInfo" style={{...props.style, ...styles.info}}>
             <Avatar style={styles.avatar} email={props.user.email} />
             <div className="user" style={styles.user}>{props.user.userName}</div>
-            <Signout style={styles.a} />
+            <Signout style={styles.a} signOut={props.signOut}/>
         </div>
     )
 }
