@@ -13,12 +13,21 @@ class App extends Component {
     }
   }
 
+  componentWillMount() {
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    if (user){
+      this.setState({ user })
+    }
+  }
+
   signedIn = () => {
     return this.state.user.uid
   }
 
   login = (user) => {
     this.setState({ user })
+    localStorage.setItem('user', JSON.stringify(user))
   }
 
   signOut = () => {
@@ -27,6 +36,7 @@ class App extends Component {
       userName: '',
       email: '',
     }})
+    localStorage.removeItem('user')
   }
 
   render() {
