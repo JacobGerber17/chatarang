@@ -8,15 +8,15 @@ class App extends Component {
   state = {
     user: {
       uid: '',
-      userName: 'bob',
+      userName: '',
     }
   }
 
   render() {
-    let isLoggedIn = true
+    let isLoggedIn = false
 
-    if(this.state.user.userName == ''){
-      isLoggedIn = false
+    if(this.state.user.userName != ''){
+      isLoggedIn = true
     }
 
     return (
