@@ -5,7 +5,7 @@ import RoomList from './RoomList';
 const Sidebar = (props) => {
     return (
         <aside className="Sidebar" style={styles.sidebar}>
-            <UserInfo userName={props.user.userName} style={styles.children}/>
+            <UserInfo user={props.user} style={styles.children}/>
             <h1 style={{...styles.children, ...styles.h1}}>XTBC 18</h1>
             <RoomList style={styles.children} />
         </aside>

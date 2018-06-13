@@ -2,7 +2,10 @@ import React from 'react'
 
 const Avatar = (props) => {
     return (
-        <div classList="Avatar" style={styles}>
+        <div classList="Avatar" style={{
+        ...styles,
+        ...props.style,
+        background: `url(https://api.adorable.io/avatars/40/${props.email}`}}>
         
         </div>
     )

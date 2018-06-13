@@ -1,13 +1,13 @@
 import React from 'react'
+import Avatar from './Avatar';
+import Signout from './Signout';
 
 const UserInfo = (props) => {
     return (
         <div className="UserInfo" style={{...props.style, ...styles.info}}>
-            <div className="Avatar" style={styles.avatar}></div>
-            <div className="user" style={styles.user}>{props.userName}</div>
-            <a href="#" style={styles.a}>
-                <i className="fas fa-sign-out-alt"></i>
-            </a>
+            <Avatar style={styles.avatar} email={props.user.email} />
+            <div className="user" style={styles.user}>{props.user.userName}</div>
+            <Signout style={styles.a} />
         </div>
     )
 }

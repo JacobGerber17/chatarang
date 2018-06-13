@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Avatar = (props) => {
+const Metadata = (props) => {
     return (
         <div class="Metadata" style={styles.metadata}>
               <div class="user" style={styles.user}>{props.username}</div>
@@ -9,7 +9,7 @@ const Avatar = (props) => {
     )
 }
 
-export default Avatar
+export default Metadata
 
 const styles = {
     metadata: {

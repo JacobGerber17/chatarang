@@ -7,8 +7,9 @@ import Login from './Login';
 class App extends Component {
   state = {
     user: {
-      uid: '',
-      userName: '',
+      uid: '1',
+      userName: 'bob',
+      email: 'bob@gmail.com',
     }
   }
 
