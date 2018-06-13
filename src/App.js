@@ -4,13 +4,17 @@ import './App.css';
 import Main from './Main'
 import Login from './Login';
 
+import base from './base'
+
 class App extends Component {
   state = {
     user: {
       uid: '',
       userName: '',
       email: '',
-    }
+    },
+
+    channel: 'random'
   }
 
   componentWillMount() {
@@ -39,10 +43,27 @@ class App extends Component {
     localStorage.removeItem('user')
   }
 
+  setChannel = (channel) => {
+    this.setState({ channel })
+
+    base.syncState(`${channel}/messages`, {
+      context: this,
+      state: 'messages',
+      asArray: true,
+  })
+  }
+
   render() {
     return (
       <div className="App">
-        {this.signedIn() ? <Main user={this.state.user} signOut={this.signOut}/> : <Login login={this.login} />}
+        {this.signedIn() 
+        ? <Main 
+            user={this.state.user} 
+            signOut={this.signOut} 
+            channel={this.state.channel} 
+            setChannel={this.setChannel}/> 
+        : <Login 
+            login={this.login} />}
       </div>
     );
   }

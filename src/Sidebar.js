@@ -7,7 +7,7 @@ const Sidebar = (props) => {
         <aside className="Sidebar" style={styles.sidebar}>
             <UserInfo user={props.user} style={styles.children} signOut={props.signOut}/>
             <h1 style={{...styles.children, ...styles.h1}}>XTBC 18</h1>
-            <RoomList style={styles.children} />
+            <RoomList style={styles.children} setChannel={props.setChannel}/>
         </aside>
     )
 }

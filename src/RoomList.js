@@ -1,7 +1,8 @@
 import React from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-const RoomList = () => {
+const RoomList = (props) => {
+
   return (
     <nav
       className={`RoomList ${css(styles.nav)}`}
@@ -9,10 +10,10 @@ const RoomList = () => {
       <h2>Rooms</h2>
       <ul className={css(styles.list)}>
         <li className={css(styles.item)}>
-          <a href="#" className={css(styles.link)}>general</a>
+          <a href="#" className={css(styles.link)} onClick={() => props.setChannel('general')}>general</a>
         </li>
         <li className={css(styles.item)}>
-          <a href="#" className={css(styles.link)}>random</a>
+          <a href="#" className={css(styles.link)} onClick={() => props.setChannel('random')}>random</a>
         </li>
       </ul>
     </nav>
