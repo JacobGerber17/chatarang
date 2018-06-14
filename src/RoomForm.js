@@ -2,22 +2,21 @@ import React, { Component } from 'react'
 
 class RoomForm extends Component {
     state = {
-        name: '',
-        description: '',
+        room:{
+            name: '',
+            description: '',
+        }
     }
     
     handleChange = (ev) => {
-        const change = {}
-        change[ev.target.name] = ev.target.value
-        this.setState(change)
+        const room = {...this.state.room}
+        room[ev.target.name] = ev.target.value
+        this.setState({ room })
     }
 
     handleSubmit = (ev) => {
         ev.preventDefault()
-        this.props.addRoom({
-            name: this.state.name,
-            description: this.state.description
-        })
+        this.props.addRoom(this.state.room)
         this.props.hideRoomForm()
     }
 
