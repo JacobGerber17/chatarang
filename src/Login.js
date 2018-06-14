@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
+import { auth, googleProvider } from './base'
+
 class Login extends Component {
     state = {
         email: '',
@@ -46,6 +48,11 @@ class Login extends Component {
                 <button type="submit" className={css(styles.button)}>
                   Sign In
                 </button>
+
+                <button className={css(styles.button)} >
+                <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
+              Sign in with Google
+            </button>
               </form>
     
               <div className="blurb">
@@ -96,10 +103,10 @@ class Login extends Component {
     
       form: {
         width: '40rem',
-        height: '15rem',
         backgroundColor: 'white',
         boxShadow: '0 1px 1px rgba(0,0,0,.1)',
         marginBottom: '2rem',
+        paddingBottom: '2rem',
       },
     
       label: {
@@ -137,6 +144,10 @@ class Login extends Component {
         color: 'white',
         width: '20rem',
       },
+
+      brandIcon: {
+        marginRight;'1.5rem'
+      }
     })
     
     export default Login
