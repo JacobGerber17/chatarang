@@ -16,14 +16,20 @@ class Chat extends Component {
     }
 
     componentWillMount(){
+        this.syncMessages()
+    }
+
+    componentDidUpdate(prevProps){
+        this.syncMessages()
+    }
+
+    syncMessages = () => {
         base.syncState(`${this.props.channel.name}/messages`, {
             context: this,
             state: 'messages',
             asArray: true,
         })
     }
-
-    
 
     addMessage = (body) => {
         const messages = [...this.state.messages]
