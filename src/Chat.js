@@ -20,15 +20,22 @@ class Chat extends Component {
     }
 
     componentDidUpdate(prevProps){
-        this.syncMessages()
+        if (prevProps.channel.name !== this.props.channel.name){
+            this.syncMessages()
+        }   
     }
 
     syncMessages = () => {
-        base.syncState(`${this.props.channel.name}/messages`, {
+        if(this.state.rebaseBinding) {
+            base.removeBinding(this.state.rebaseBinding)
+        }
+
+        const rebaseBinding = base.syncState(`${this.props.channel.name}/messages`, {
             context: this,
             state: 'messages',
             asArray: true,
         })
+        this.setState({ rebaseBinding })
     }
 
     addMessage = (body) => {
