@@ -1,5 +1,17 @@
 # Chatarang
 
+## Day 8 Homework
+
+Add another authentication method (Documentation is your friend)
+
+### Super Mega Bonus Credit
+
+Continue to enhance the app. Be creative!
+
+### Super Mega Bonus Credit Hyper Fighting
+
+Have a good weekend
+
 ## Day 7 Homework
 
 Add support for multiple rooms/channels. _Hint_: The first argument to base.syncstate should be different for each room/channel.
