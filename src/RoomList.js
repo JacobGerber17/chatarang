@@ -37,7 +37,12 @@ class RoomList extends Component {
 
   render() {
     if (this.state.showRoomForm) {
-      return <RoomForm hideRoomForm={this.hideRoomForm} addRoom={this.addRoom}/>
+      return (
+        <RoomForm
+          hideRoomForm={this.hideRoomForm}
+          addRoom={this.addRoom}
+        />
+      )
     } else {
       return (
         <nav
@@ -58,7 +63,7 @@ class RoomList extends Component {
                 <RoomLink
                   key={roomName}
                   room={this.state.rooms[roomName]}
-                  setChannel={this.props.setChannel}
+                  loadRoom={this.props.loadRoom}
                 />
               ))
             }

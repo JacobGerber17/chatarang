@@ -1,69 +1,77 @@
 import React, { Component } from 'react'
 
-import ChatHeader from './ChatHeader';
-import MessageList from './MessageList';
-import MessageForm from './MessageForm';
+import ChatHeader from './ChatHeader'
+import MessageList from './MessageList'
+import MessageForm from './MessageForm'
 
 import base from './base'
 
 class Chat extends Component {
-    constructor(){
-        super()
+  constructor() {
+    super()
 
-        this.state = {
-            messages: [],
-        }
+    this.state = {
+      messages: [],
+      rebaseBinding: null,
+    }
+  }
+
+  componentWillMount() {
+    this.syncMessages()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.room.name !== this.props.room.name) {
+      this.syncMessages()
+    }
+  }
+
+  syncMessages = () => {
+    if (this.state.rebaseBinding) {
+      base.removeBinding(this.state.rebaseBinding)
     }
 
-    componentWillMount(){
-        this.syncMessages()
-    }
+    const rebaseBinding = base.syncState(
+      `${this.props.room.name}/messages`,
+      {
+        context: this,
+        state: 'messages',
+        asArray: true,
+      }
+    )
 
-    componentDidUpdate(prevProps){
-        if (prevProps.channel.name !== this.props.channel.name){
-            this.syncMessages()
-        }   
-    }
+    this.setState({ rebaseBinding })
+  }
 
-    syncMessages = () => {
-        if(this.state.rebaseBinding) {
-            base.removeBinding(this.state.rebaseBinding)
-        }
+  addMessage = (body) => {
+    const messages = [...this.state.messages]
+    messages.push({
+      id: Date.now(),
+      user: this.props.user,
+      body,
+    })
 
-        const rebaseBinding = base.syncState(`${this.props.channel.name}/messages`, {
-            context: this,
-            state: 'messages',
-            asArray: true,
-        })
-        this.setState({ rebaseBinding })
-    }
+    this.setState({ messages })
+  }
 
-    addMessage = (body) => {
-        const messages = [...this.state.messages]
-        messages.push({
-            id: Date.now(),
-            userName: this.props.user.userName,
-            body: body,
-            email: this.props.user.email
-        })
-
-        this.setState({messages})
-    }
-
-    render(){
-        return(
-            <div className="Chat" style={styles}>
-                <ChatHeader channel={this.props.channel}/>
-                <MessageList messages={this.state.messages} channel={this.props.channel}/>
-                <MessageForm addMessage={this.addMessage} />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="Chat" style={styles}>
+        <ChatHeader room={this.props.room} />
+        <MessageList
+          messages={this.state.messages}
+          room={this.props.room}
+        />
+        <MessageForm addMessage={this.addMessage} />
+      </div>
+    )
+  }
 }
 
 const styles = {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
 }
+
 export default Chat

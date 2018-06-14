@@ -1,36 +1,41 @@
 import React, { Component } from 'react'
 
-import Sidebar from './Sidebar';
-import Chat from './Chat';
-
-import base from './base'
+import Sidebar from './Sidebar'
+import Chat from './Chat'
 
 class Main extends Component {
-    state = {
-        channel: {
-            name: 'general',
-            description: 'Announcements and general chat',
-        }
+  state = {
+    room: {
+      name: 's2morning',
+      description: 'Chatter about the actual class',
     }
+  }
 
-    setChannel = (channel) => {
-        this.setState({ channel })
-      }
-    
-    render(){
-        return(
-            <div className="Main" style={styles}>
-                <Sidebar user={this.props.user} signOut={this.props.signOut} setChannel={this.setChannel}/>
-                <Chat user={this.props.user} channel={this.state.channel}/>
-            </div>
-        )
-    }
+  loadRoom = (room) => {
+    this.setState({ room })
+  }
+
+  render() {
+    return (
+      <div className="Main" style={styles}>
+        <Sidebar
+          user={this.props.user}
+          signOut={this.props.signOut}
+          loadRoom={this.loadRoom}
+        />
+        <Chat
+          user={this.props.user}
+          room={this.state.room}
+        />
+      </div>
+    )
+  }
 }
 
 const styles = {
-    display: 'flex',
-    alignItems: 'stretch',
-    height: '100vh',
+  display: 'flex',
+  alignItems: 'stretch',
+  height: '100vh',
 }
 
 export default Main
