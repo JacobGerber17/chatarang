@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import base from './base'
 
 import RoomLink from './RoomLink'
 
 class RoomList extends Component {
 
   state = {
-    rooms: {
-      general : {
-        name: 'general',
-        description: 'Whatever. Just chat, folks.',
-        messages: []
-      },
+    rooms: {}
+  }
 
-      s2morning: {
-        name: 's2morning',
-        description: 'Chat about coursework',
-        messages: []
-      },
+  addRoom = (room) => {
+    const rooms = {...this.state.rooms}
+    rooms[room.name] = room
+    this.setState({ rooms })
+  }
 
-      random: {
-        name: 'random',
-        description: 'Memes, probably',
-        messages: []
+  componentDidMount(){
+    base.syncState(
+      'rooms',
+      {
+        context: this,
+        state: 'rooms',
       }
-    }
+    )
   }
 
   render() {
