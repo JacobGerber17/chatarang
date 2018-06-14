@@ -15,12 +15,6 @@ class Main extends Component {
 
     setChannel = (channel) => {
         this.setState({ channel })
-    
-        base.syncState(`${channel}/messages`, {
-          context: this,
-          state: 'messages',
-          asArray: true,
-      })
       }
     
     render(){

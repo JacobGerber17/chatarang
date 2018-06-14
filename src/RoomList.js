@@ -1,23 +1,48 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-const RoomList = (props) => {
+import RoomLink from './RoomLink'
 
-  return (
-    <nav
-      className={`RoomList ${css(styles.nav)}`}
-    >
-      <h2>Rooms</h2>
-      <ul className={css(styles.list)}>
-        <li className={css(styles.item)}>
-          <a href="#" className={css(styles.link)} onClick={() => props.setChannel('general')}>general</a>
-        </li>
-        <li className={css(styles.item)}>
-          <a href="#" className={css(styles.link)} onClick={() => props.setChannel('random')}>random</a>
-        </li>
-      </ul>
-    </nav>
-  )
+class RoomList extends Component {
+
+  state = {
+    rooms: {
+      general : {
+        name: 'general',
+        description: 'Whatever. Just chat, folks.',
+        messages: []
+      },
+
+      s2morning: {
+        name: 's2morning',
+        description: 'Chat about coursework',
+        messages: []
+      },
+
+      random: {
+        name: 'random',
+        description: 'Memes, probably',
+        messages: []
+      }
+    }
+  }
+
+  render() {
+    return (
+      <nav
+        className={`RoomList ${css(styles.nav)}`}
+      >
+        <h2>Rooms</h2>
+        <ul className={css(styles.list)}>
+          {
+            Object.keys(this.state.rooms).map(roomName => (
+              <RoomLink key= {roomName} room={this.state.rooms[roomName]} setChannel={this.props.setChannel} />
+            ))
+          }
+        </ul>
+      </nav>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -29,24 +54,6 @@ const styles = StyleSheet.create({
     listStyle: 'none',
     marginLeft: 0,
     paddingLeft: 0,
-  },
-
-  item: {
-    marginBottom: '0.5rem',
-  },
-
-  link: {
-    display: 'block',
-    color: 'whitesmoke',
-    textDecoration: 'none',
-
-    '::before': {
-      content: '"# "',
-    },
-
-    ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    }
   },
 })
 
