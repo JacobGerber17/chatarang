@@ -14,7 +14,7 @@ class App extends Component {
       email: '',
     },
 
-    channel: 'random'
+    channel: 'general'
   }
 
   componentWillMount() {
