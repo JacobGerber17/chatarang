@@ -4,8 +4,8 @@ const ChatHeader = (props) => {
     return (
         <div className="ChatHeader" style={styles.header}>
             <div className="roomInfo">
-                <h2 style={styles.h2}>#{props.channel}</h2>
-                <p style={styles.p}>Announcements and general chat</p>
+                <h2 style={styles.h2}>#{props.channel.name}</h2>
+                <p style={styles.p}>{props.channel.description}</p>
             </div>
         </div>
     )

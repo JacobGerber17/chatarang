@@ -4,7 +4,7 @@ import './App.css';
 import Main from './Main'
 import Login from './Login';
 
-import base from './base'
+
 
 class App extends Component {
   state = {
@@ -13,8 +13,6 @@ class App extends Component {
       userName: '',
       email: '',
     },
-
-    channel: 'general'
   }
 
   componentWillMount() {
@@ -43,16 +41,7 @@ class App extends Component {
     localStorage.removeItem('user')
   }
 
-  setChannel = (channel) => {
-    this.setState({ channel })
-
-    base.syncState(`${channel}/messages`, {
-      context: this,
-      state: 'messages',
-      asArray: true,
-  })
-  }
-
+  
   render() {
     return (
       <div className="App">
@@ -60,8 +49,7 @@ class App extends Component {
         ? <Main 
             user={this.state.user} 
             signOut={this.signOut} 
-            channel={this.state.channel} 
-            setChannel={this.setChannel}/> 
+          />
         : <Login 
             login={this.login} />}
       </div>
