@@ -70,6 +70,7 @@ class SignIn extends Component {
               onClick={this.authenticate}
               id="github"
             >
+              <i className={`fab fa-github ${css(styles.brandIcon)}`}></i>
               Sign in with GitHub
             </button>
           </form>
