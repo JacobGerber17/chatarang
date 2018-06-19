@@ -27,6 +27,17 @@ class RoomList extends Component {
     this.setState({ rooms })
   }
 
+  userAllowed = (users) => {
+    let returnVal = false
+    users.forEach(user => {
+      if(this.props.user.uid === user.value) {
+        returnVal = true
+      }
+    });
+
+    return returnVal
+  }
+
   render() {
     return (
       <Switch>
@@ -60,6 +71,7 @@ class RoomList extends Component {
                 <ul className={css(styles.list)}>
                   {
                     Object.keys(this.state.rooms).map(roomName => (
+                      (this.state.rooms[roomName].public || this.userAllowed(this.state.rooms[roomName].members)) &&
                       <RoomLink
                         key={roomName}
                         room={this.state.rooms[roomName]}
