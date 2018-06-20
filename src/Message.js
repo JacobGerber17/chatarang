@@ -9,6 +9,7 @@ import Metadata from './Metadata'
 class Message extends Component {
   state = {
     showPicker: false,
+    reactions:[] 
   }
 
   togglePicker = () => {
@@ -16,7 +17,9 @@ class Message extends Component {
   }
 
   handleEmojiSelect = (emoji) => {
-    console.log(emoji)
+    let emojis = [...this.state.reactions]
+    emojis.push(emoji.native)
+    this.setState({reactions: emojis})
     this.togglePicker()
   }
 
@@ -29,7 +32,7 @@ class Message extends Component {
         <div className={css(styles.details)}>
           <Metadata message={message} />
           <div className="body">
-            {message.body}
+            {message.body} {this.state.reactions}
           </div>
           <button
             className={`reactionButton ${css(styles.reactionButton)}`}
